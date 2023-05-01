@@ -1,4 +1,3 @@
-import "./app.styles.scss";
 import {Routes, Route} from "react-router-dom";
 import Home from "../../routes/home";
 import Navigation from "../../routes/navigation";
