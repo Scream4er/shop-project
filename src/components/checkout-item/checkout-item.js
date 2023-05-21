@@ -1,6 +1,15 @@
 import {BsArrowRight, BsArrowLeft, BsXLg} from "react-icons/bs"
 
-import {CheckoutItemContainer, ImageContainer, Arrow, Quantity, Value, BaseSpan, RemoveButton} from "./checkout-item.styles";
+import {
+    CheckoutItemContainer,
+    ImageContainer,
+    Arrow,
+    Quantity,
+    Value,
+    BaseSpan,
+    RemoveButton,
+    Total
+} from "./checkout-item.styles";
 import {useSelector, useDispatch} from "react-redux";
 import {selectCartItems} from "../../store/cart/cart.selector";
 import {addItemToCart, removeItemFromCart, clearItemFromCart} from "../../store/cart/cart.action";
@@ -17,6 +26,8 @@ const CheckoutItem = ({cartItem}) => {
     const removeProductFromCart = () => dispatch(removeItemFromCart(cartItems, cartItem));
     const clearHandle = () => dispatch(clearItemFromCart(cartItems, cartItem));
 
+    const oneItemTotal = quantity * price;
+
     return (
         <CheckoutItemContainer>
             <ImageContainer>
@@ -32,6 +43,7 @@ const CheckoutItem = ({cartItem}) => {
             <BaseSpan>
               {price}
             </BaseSpan>
+            <Total>{oneItemTotal}</Total>
             <RemoveButton onClick={clearHandle}>
                 {<BsXLg/>}
             </RemoveButton>

@@ -36,6 +36,10 @@ export const Value = styled.span`
   margin: 0 10px;
 `;
 
+export const Total = styled.span`
+  margin: 0 100px 0 10px;
+`;
+
 export const RemoveButton = styled.div`
   padding-left: 12px;
   cursor: pointer;

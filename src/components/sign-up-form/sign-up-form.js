@@ -1,8 +1,13 @@
-import {createAuthUserWithEmailAndPassword, createUserDocumentFromAuth} from "../../utils/firebase/firebase.utils";
-import {SignUpContainer} from "./sign-up-form.styles";
+import {useState} from "react";
+import {useDispatch} from "react-redux";
+
 import FormInput from "../form-input";
 import Button from "../button";
-import {useState} from "react";
+
+import {createAuthUserWithEmailAndPassword, createUserDocumentFromAuth} from "../../utils/firebase/firebase.utils";
+
+import {SignUpContainer} from "./sign-up-form.styles";
+import {signUpStart} from "../../store/user/user.action";
 
 const defaultFormFields = {
     displayName: '',
@@ -14,8 +19,8 @@ const defaultFormFields = {
 const SignUpForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const {displayName, email, password, confirmPassword} = formFields;
+    const dispatch = useDispatch();
 
-    console.log(formFields);
 
     const resetFormField = () => {
         setFormFields(defaultFormFields);
@@ -25,13 +30,12 @@ const SignUpForm = () => {
         event.preventDefault();
 
         if (password !== confirmPassword) {
-            return
+            console.log('Password do not match');
+            return;
         }
 
         try {
-            const {user} = await createAuthUserWithEmailAndPassword(email, password);
-
-            await createUserDocumentFromAuth(user, {displayName});
+            dispatch(signUpStart(email, password, displayName));
             resetFormField();
         } catch (error) {
             console.log('user creation error', error)
