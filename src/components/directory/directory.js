@@ -5,7 +5,7 @@ const categories = [
     {
         id: 1,
         title: 'hats',
-        imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
+        imageUrl: 'https://i.ibb.co/8P2MQRC/al607090w-500x500.jpg',
         route: 'shop/hats',
     },
     {
